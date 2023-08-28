@@ -6,7 +6,7 @@ int low=0,high=n-1,mid;
 int search(int key)
 {
     do{
-        mid=low+high/2;
+        mid=(low+high)/2;
 
         if(a[mid]==key)
         {
