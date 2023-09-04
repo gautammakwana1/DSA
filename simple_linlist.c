@@ -80,9 +80,28 @@ void Midinsert(int val,int pos)
     temp->next = ptr->next;
     ptr->next = temp;
 }
-void Middelete()
+void Middelete(int pos)
 {
-    
+    struct node *ptr = head;
+    struct node *p;
+    if(head == NULL)
+    {
+        printf("List is empty...");
+        return;
+    }
+    // if(ptr == NULL)
+    // {
+    //     printf("Position is not found...");
+    //     return;
+    // }
+    while(ptr->data != pos)
+    {
+        p = ptr;
+        ptr = ptr->next;
+    }
+    p->next = ptr->next;
+    free(ptr);
+    return;
 }
 void display()
 {
@@ -109,6 +128,7 @@ int main()
     printf("\n4. Insert First ");
     printf("\n5. Delete First ");
     printf("\n6. Mid insert  ");
+    printf("\n7. Mid Delete  ");
     printf("\n0. End Program ");
     do{
         int x,pos;
@@ -141,6 +161,11 @@ int main()
                     printf("Enter Position :");
                     scanf("%d",&pos);
                     Midinsert(x,pos);
+                    break;
+            case 7:
+                    printf("Enter your position :");
+                    scanf("%d",&pos);
+                    Middelete(pos);
                     break;
             case 0:
                     printf("Program is closed.");
