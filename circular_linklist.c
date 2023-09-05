@@ -53,18 +53,94 @@ void insertFirst(int val)
     struct node *ptr = head;
     struct node *temp = malloc(sizeof(struct node));
     temp->data = val;
-    // while (ptr->next != head)
-    // {
-    //     ptr = ptr->next;
-    // }
+    if(head == NULL)
+    {
+        head = temp;
+        temp->next = head;
+        return;
+    }
+    else{
+        while(ptr->next != head)
+        {
+            ptr = ptr->next;
+        }
+        temp->next = head;
+        head = temp;
+        ptr->next = head;
+    }
     // if(ptr->next == NULL)
     // {
     //     temp->next = head; 
     // }
     // head = temp;
     // ptr->next = head; 
-    temp->next = ptr;
-    head = temp;
+    // temp->next = ptr;
+    // head = temp;
+    return;
+}
+void deleteFirst()
+{
+    struct node *ptr = head;
+    struct node *temp = head;
+    if(head == NULL)
+    {
+        printf("List is empty...");
+        return;
+    }
+    while(ptr->next != head)
+    {
+        ptr = ptr->next;
+    }
+    if(ptr == head)
+    {
+        head = NULL;
+    }
+    else{
+        head = head->next;
+        ptr->next = head;
+    }
+    free(temp);
+    return;
+}
+void Midinsert(int val,int pos)
+{
+    struct node *ptr =head;
+    struct node *temp = malloc(sizeof(struct node));
+    temp->data = val;
+    temp->next = NULL;
+    if(head == NULL)
+    {
+        head = temp;
+        return;
+    }
+    while(ptr->data != pos)  
+    {
+        ptr = ptr->next;
+    }
+    temp->next = ptr->next;
+    ptr->next = temp;
+}
+void Middelete(int pos)
+{
+    struct node *ptr = head;
+    struct node *p;
+    if(head == NULL)
+    {
+        printf("List is empty...");
+        return;
+    }
+    // if(ptr == NULL)
+    // {
+    //     printf("Position is not found...");
+    //     return;
+    // }
+    while(ptr->data != pos)
+    {
+        p = ptr;
+        ptr = ptr->next;
+    }
+    p->next = ptr->next;
+    free(ptr);
     return;
 }
 void display()
@@ -75,14 +151,13 @@ void display()
         printf("list is empty...");
         return;
     }
-    else{
-        do{
+    do{
 
-            printf("%d ",ptr->data);
-            ptr = ptr->next;
+        printf("%d ",ptr->data);
+        ptr = ptr->next;
 
-        }while(ptr != head);
-    }
+    }while(ptr != head);
+
     printf("\n");
 }
 int main()
@@ -96,6 +171,9 @@ int main()
     printf("\n2. Insert End ");
     printf("\n3. Delete End ");
     printf("\n4. Insert First ");
+    printf("\n5. Delete First ");
+    printf("\n6. Insert Mid ");
+    printf("\n7. Delete Mid ");
     printf("\n0. End Program ");
     do{
         printf("\nEnter your choice :");
@@ -117,6 +195,21 @@ int main()
                     printf("Enter your value :");
                     scanf("%d",&val);
                     insertFirst(val);
+                    break;
+            case 5:
+                    deleteFirst();
+                    break;
+            case 6:
+                    printf("Enter Your value :");
+                    scanf("%d",&val);
+                    printf("Enter Your position :");
+                    scanf("%d",&pos);
+                    Midinsert(val,pos);
+                    break;
+            case 7:
+                    printf("Enter your position :");
+                    scanf("%d",&pos);
+                    Middelete(pos);
                     break;
             case 0:
                     printf("Program is closed.");
