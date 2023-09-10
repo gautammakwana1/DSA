@@ -139,7 +139,7 @@ void deletemid(int pos)
         }
         ptr = ptr->next;
     }
-    printf("position not found...\n", pos);
+    printf("position not found...\n");
 }
 void display()
 {
